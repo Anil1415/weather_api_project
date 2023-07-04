@@ -19,7 +19,12 @@ def get_output():
         
     df=pd.read_csv(os.path.join('artifacts','clean_data.csv'))
     df_grouped = df.groupby(['city_id','year','month','day','hour']).first()
-    index_value = (1,2017,1,1,100)
+    city_id = request.args.get(key='city_id', type=int)
+    year = request.args.get(key='year',type=int)
+    month = request.args.get(key='month',type=int)
+    day = request.args.get(key='day',type=int)
+    hour = request.args.get(key='hour',type=int)
+    index_value = (city_id,year,month,day,hour)
     print(index_value)
     print(df_grouped.loc[index_value, :])
     print(df_grouped.loc[index_value, :].to_dict())
@@ -33,7 +38,7 @@ if __name__ == '__main__':
 
 """
 
-city_id = request.args.get(key='date', type=int)
+        city_id = request.args.get(key='date', type=int)
         year = request.args.get(key='year',type=int)
         month = request.args.get(key='month',type=int)
         day = request.args.get(key='day',type=int)
