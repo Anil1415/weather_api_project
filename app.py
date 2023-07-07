@@ -36,12 +36,23 @@ def output_range():
     df=pd.read_csv(os.path.join('artifacts','clean_data.csv'))
     df_grouped = df.groupby(['city_id','year','month','day','hour']).first()
     # starting values
-
-
-    start_index_value = (1,2017,1,1,100)
-    end_index_value = (1,2017,1,1,300)
+    city_id = request.args.get(key='start_city_id', type=int)
+    year = request.args.get(key='start_year',type=int)
+    month = request.args.get(key='start_month',type=int)
+    day = request.args.get(key='start_day',type=int)
+    hour = request.args.get(key='start_hour',type=int)
+    start_index_value = (city_id,year,month,day,hour)
     print(start_index_value)
+
+    # ending values
+    city_id = request.args.get(key='end_city_id', type=int)
+    year = request.args.get(key='end_year',type=int)
+    month = request.args.get(key='end_month',type=int)
+    day = request.args.get(key='end_day',type=int)
+    hour = request.args.get(key='end_hour',type=int)
+    end_index_value = (city_id,year,month,day,hour)
     print(end_index_value)
+   
     result = df_grouped.loc[start_index_value:end_index_value, :]
     print(result.head())
     str_obj = result.to_json()
@@ -60,23 +71,5 @@ if __name__ == '__main__':
         
        
 
-""" start_city_id = request.args.get(key='city_id', type=int)
-        start_year = request.args.get(key='year',type=int)
-        start_month = request.args.get(key='month',type=int)
-        start_day = request.args.get(key='day',type=int)
-        start_hour = request.args.get(key='hour',type=int)
-        start_index_value = (start_city_id,start_year,start_month,start_day,start_hour)
 
-        # ending values
-
-        end_city_id = request.args.get(key='city_id', type=int)
-        end_year = request.args.get(key='year',type=int)
-        end_month = request.args.get(key='month',type=int)
-        end_day = request.args.get(key='day',type=int)
-        end_hour = request.args.get(key='hour',type=int)
-        end_index_value = (end_city_id,end_year,end_month,end_day,end_hour)
-
-
-
-        print(start_index_value)
-        print(end_index_value)"""
+        
