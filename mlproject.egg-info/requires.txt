@@ -1,5 +1,0 @@
-pandas
-numpy
-flask
-seaborn
-setuptools==59.8.0
