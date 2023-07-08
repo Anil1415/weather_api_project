@@ -58,7 +58,6 @@ def output_range():
     str_obj = result.to_json()
     print(str_obj)
     js_dict = json.loads(str_obj)
-
     
     return jsonify(js_dict)
 
